@@ -90,4 +90,5 @@ fn main () {
 // #####
 
 #[contract] // Line 1: The Macro
+
 pub struct Contract; // Line 2: The Struct
