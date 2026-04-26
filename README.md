@@ -1,6 +1,5 @@
 # ValueChainOperation_Crypto
 
-Goal : To become Blockchain Developer
+This is respoitory which you can read and experiment with crpytography in Rust and Go 
 
-Method : Commit every single day
-
+I made this because To deeply understand crypto dynamics in detail in coding
