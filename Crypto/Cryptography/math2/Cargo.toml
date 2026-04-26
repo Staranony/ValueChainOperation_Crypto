@@ -1,0 +1,21 @@
+[package]
+name = "encryption_indepth"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# For the ECB Audit (Old code)
+aes = "0.8"
+hex = "0.4"
+
+# For the Pederson Commitment (New code)
+k256 = { version = "0.13", features = ["arithmetic"] }
+rand_core = { version = "0.6", features = ["getrandom"] }
+
+[[bin]]
+name = "ecb_attack"
+path = "src/bin/ecb_attack.rs"
+
+[[bin]]
+name = "redonesecurity"
+path = "src/redonesecurity.rs"
