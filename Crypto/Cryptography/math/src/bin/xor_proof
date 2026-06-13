@@ -1,0 +1,77 @@
+use std::ops::BitXor;
+
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+
+pub struct Plaintext(pub u32);
+
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+
+pub struct Key(pub u32);
+
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
+
+pub struct Ciphertext(pub u32);
+
+impl BitXor<Key> for Plaintext {
+
+type Output = Ciphertext;
+
+#[inline]
+
+fn bitxor(self, key: Key) -> Self::Output {
+
+Ciphertext(self.0 ^ key.0)
+
+}
+
+}
+
+impl BitXor<Key> for Ciphertext {
+
+type Output = Plaintext;
+
+#[inline]
+
+fn bitxor(self, key: Key) -> Self::Output {
+
+Plaintext(self.0 ^ key.0)
+
+}
+
+}
+
+#[cfg(test)]
+
+mod tests {
+
+use super::*;
+
+#[test]
+
+fn textbook_example_verification() {
+
+let m = Plaintext(0b0011_0100_1101_1000_1111);
+
+let k = Key(0b1110_1010_0110_1000_1101);
+
+let c = m ^ k;
+
+assert_eq!(c, Ciphertext(0b1101_1110_1011_0000_0010));
+
+assert_eq!(c ^ k, m);
+
+}
+
+#[test]
+
+fn claim_1_2_involution_property() {
+
+let m = Plaintext(0b10101010);
+
+let k = Key(0b11001100);
+
+assert_eq!((m ^ k) ^ k, m);
+
+}
+
+}
